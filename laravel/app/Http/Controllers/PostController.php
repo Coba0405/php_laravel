@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\ƒacades\DB;
+
 class PostController extends Controller
 {
     /**
@@ -12,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -20,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -28,7 +32,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Auth::id();
+        $post = new Post();
+        $post->body = $request->body;
+        $post->user_id = $id;
+        $post->save();
+        
+        return redirect()->to('/posts');
     }
 
     /**
@@ -36,7 +46,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $usr_id = $post->user_id;
+        $user = DB::table('users')->where('id', $usr_id)->first();
+
+        return view('posts.detail', ['post' => $post,'user' => $user]);
+
     }
 
     /**
@@ -44,7 +58,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts'.edit,['post' => $post]);
     }
 
     /**
@@ -52,7 +66,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $id = $request->post_id;
+        $post = Post::findOrFail($id);
+        $post->body = $request->body;
+        $post->save();
+        return redirect()->to('/posts'); 
     }
 
     /**
@@ -60,6 +78,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post =\App\Post::find($id);
+        $post->delete();
+
+        return redirect()->to('/posts');
     }
 }
