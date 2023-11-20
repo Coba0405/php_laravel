@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/posts', [PostController::class, 'index']);
+// Route::get('/posts/{id}', [PostController::class, 'show']);
+// Route::get('/posts/create', [PostController::class, 'create']);
+// Route::post('/posts', [PostController::class, 'store']);
+// Route::delete('/posts/{id}', [PostController::class, 'destroy']);
+
+Route::resource('/posts', PostController::class, ['only' => ['index','show','create','store','edit','update','destroy']]);
+// Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
+// Route::put('/posts/{id}/edit', [PostController::class, 'update']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
