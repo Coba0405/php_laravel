@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('home', 'App\Http\Controllers\HomeController@index')->name('home.index');
+Route::get('home', [HomeController::class, 'index'])->name('home');
+
 
 // Route::get('/posts', [PostController::class, 'index']);
 // Route::get('/posts/{id}', [PostController::class, 'show']);
