@@ -9,4 +9,16 @@ class Post extends Model
 {
     protected $table = 'posts';
     use HasFactory;
+    
+    
+    public static function deletePostById($id)
+    {
+        $post = self::find($id);
+        
+        if ($post) {
+            return $post->delete();
+        }
+        
+        return false;
+    }
 }

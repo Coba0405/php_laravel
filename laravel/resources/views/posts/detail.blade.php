@@ -9,6 +9,7 @@
             <div class="card">
                 <div class="card-header">
                    {{ $post->id }}
+                   {{ $post->title }}
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ $post->body }}</p>

@@ -34,6 +34,7 @@ class PostController extends Controller
     {
         $id = Auth::id();
         $post = new Post();
+        $post->title = $request->title;
         $post->body = $request->body;
         $post->user_id = $id;
         $post->save();
@@ -58,7 +59,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts'.edit,['post' => $post]);
+        return view('posts.edit',['post' => $post]);
     }
 
     /**
@@ -67,7 +68,9 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $id = $request->post_id;
+        // レコードを取得
         $post = Post::findOrFail($id);
+        $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
         return redirect()->to('/posts'); 
@@ -78,9 +81,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post =\App\Post::find($id);
+        // $post =\App\Post::find($id);
         $post->delete();
-
-        return redirect()->to('/posts');
+        return redirect('/posts');
     }
 }

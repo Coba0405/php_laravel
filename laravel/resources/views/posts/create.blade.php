@@ -8,8 +8,10 @@
             <form action="/posts" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">新規投稿</label>
-                    <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="exampleFormControlTextarea1">作品名</label>
+                    <textarea class="form-control" name="title" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="exampleFormControlTextarea1">レビュー</label>
+                    <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="10"></textarea>
                     <div class="text-center mt-3">
                         <input class="btn btn-primary" type="submit" value="投稿する">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
