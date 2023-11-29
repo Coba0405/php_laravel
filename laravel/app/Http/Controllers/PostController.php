@@ -73,7 +73,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
-        return redirect()->to('/posts'); 
+        return redirect('/posts'); 
     }
 
     /**
@@ -81,7 +81,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // $post =\App\Post::find($id);
+        // $post = Post::find($post);
         $post->delete();
         return redirect('/posts');
     }

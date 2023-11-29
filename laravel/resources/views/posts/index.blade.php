@@ -36,7 +36,7 @@
                                     <form method="POST" action="/posts/{{ $post->id }}/delete">
                                     <!-- <form action="/posts/delete/{{$post->id}}" method="POST"> -->
                                         {{ csrf_field() }}
-                                        <!-- @method('DELETE') -->
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger post_del_btn">削除</button>
                                         <!-- <input type="submit" value="削除" class="btn btn-danger post_del_btn"> -->
                                     </form>

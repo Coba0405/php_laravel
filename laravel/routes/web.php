@@ -37,7 +37,7 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::resource('/posts', PostController::class, ['only' => ['index','show','create','store']]);
 Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
 Route::post('/posts/{id}/edit', [PostController::class, 'update']);
-Route::post('/posts/{id}/delete', [PostController::class, 'destroy']);
+Route::delete('/posts/{id}/delete', [PostController::class, 'destroy']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
